@@ -1,0 +1,91 @@
+.container {
+  width: 90%;
+  grid-template-columns: 1fr;
+  margin: 0 auto;
+  justify-items: center;
+  display: grid;
+  grid-gap: 10px;
+  border-bottom: 1px solid #dddddd;
+  padding: 20px 0;
+}
+
+.profileimage img {
+  width: 25%;
+  border-radius: 135px;
+}
+
+.profileimage {
+  grid-auto-columns: 1fr;
+  justify-items: center;
+  display: grid;
+  grid-gap: 10px;
+}
+
+.heading {
+  text-align: center;
+  background-color: #c29957;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 100;
+  margin : 0;
+}
+
+.displayname {
+  font-weight: 800;
+  color: white;
+}
+
+.address1{
+  width: 90%;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: 11fr 1fr;
+}
+
+.addressshow {
+  font-size: 12px;
+}
+
+.editbutton  {
+  text-decoration: underline;
+}
+
+.deletebutton {
+  color:red;
+  text-decoration: underline;
+}
+
+.orderhistory{
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.order{
+  display: grid;
+  width: 90%;
+  max-width: 1080px;
+  margin: 0 auto;
+  grid-template-columns: 1fr 2fr;
+  font-size: 12px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e2e0e0;
+}
+
+.productcolumn{
+  margin-bottom: 15px;
+}
+
+@media screen and (min-width: 800px) {
+  .container{
+    max-width: 1080px;
+  }
+  .address1 {
+    max-width: 1080px;
+  }
+  .addressshow {
+    font-size: 14px;
+  }
+}

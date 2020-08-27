@@ -1,0 +1,54 @@
+.authtext {
+  margin-bottom: 0;
+  margin-left: 1.2em;
+}
+
+.mnavimg {
+  height: 25px;
+  display: block;
+  padding: 0;
+  margin: 0 auto;
+  border-radius: 50px;
+}
+
+@media screen and (max-width: 800px) {
+  .authtext {
+    margin-left: 0;
+    letter-spacing: 0.0075rem;
+    text-decoration: none;
+    font-size: 12px;
+  }
+
+  .mnavimgout{
+    height: 20px;
+    display: block;
+    padding: 0;
+    margin: 3px auto 0 auto;
+  }
+  .authOuttext {
+    font-size: 12px;
+  }
+  .mnavimg{
+    margin-top: 3px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .glogin {
+    display: grid;
+    grid-template-columns: max-content;
+    border-radius: 50px;
+    margin-left: 15px;
+  }
+  .authtext {
+    margin-left: 0.3rem;
+    font-size: 13px;
+    display: none;
+  }
+  .mnavimg {
+    height: 40px;
+  }
+  .mnavimgout {
+    display: none;
+  }
+}

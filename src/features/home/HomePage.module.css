@@ -1,0 +1,203 @@
+
+@keyframes fadeInUp {
+  from {
+      transform: translate3d(0,40px,0)
+  }
+
+  to {
+      transform: translate3d(0,0,0);
+      opacity: 1
+  }
+}
+
+@-webkit-keyframes fadeInUp {
+  from {
+      transform: translate3d(0,40px,0)
+  }
+
+  to {
+      transform: translate3d(0,0,0);
+      opacity: 1
+  }
+}
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: both
+}
+
+.animatedFadeInUp {
+  opacity: 0
+}
+
+.fadeInUp {
+  opacity: 0;
+  animation-name: fadeInUp;
+  -webkit-animation-name: fadeInUp;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0 auto;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.banner h2 {
+  font-size: 28px;
+  line-height: 30px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.28em;
+}
+
+.bannerd{
+  display: none;
+}
+
+.savings{
+  text-align: center;
+  padding: 5px 0;
+}
+
+.innersavings{
+  background-color: #e954541a;
+  margin: 10px 5%;
+  padding: 10px 0;
+}
+
+.savings h1{
+  text-transform: uppercase;
+  font-size: 22.1px;
+  margin-bottom: 7px;
+}
+
+.himher{
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100vh;
+}
+
+.him{
+  background: url(https://images.unsplash.com/photo-1467742324659-90d71d9a6d17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80) no-repeat center center;
+  background-size: cover;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.her{
+  background: url(https://images.unsplash.com/photo-1496747611176-843222e1e57c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80) no-repeat center center;
+  background-size: cover;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.her h2{
+  text-transform: uppercase;
+  color: white;
+}
+
+.her p{
+  color: white;
+}
+
+.him h2 {
+  text-transform: uppercase;
+  color: white;
+}
+
+.him p {
+  color: white;
+}
+
+.innershopby{
+  margin: 0 auto;
+  width: 90%;
+}
+
+.categories{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 17px;
+  grid-template-rows: 25vh 25vh;
+}
+
+.categories .item1{
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background: url(//cdn.shopify.com/s/files/1/0027/7692/4218/products/T185143-Heather-1_540x.jpg?v=1526306255) no-repeat center center;
+  background-size: cover;
+  width: 100%;
+}
+
+.categories .item2{
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background: url(//cdn.shopify.com/s/files/1/0027/7692/4218/products/WTY387-TAUPE-1_720x.jpg?v=1526306264) no-repeat center center;
+  background-size: cover;
+}
+
+.categories .item3{
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background: url(//cdn.shopify.com/s/files/1/0027/7692/4218/products/WDY263-BLACK-1_720x.jpg?v=1526306239) no-repeat center center;
+  background-size: cover;
+}
+
+.categories .item4{
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background: url(//cdn.shopify.com/s/files/1/0027/7692/4218/products/WTY489-Midnight-Teal-1_720x.jpg?v=1526306247) no-repeat center center;
+  background-size: cover;
+}
+
+.categories span {
+  background-color: #fff;
+  padding: 8px 15px;
+}
+
+.shopby{
+  padding: 20px 0;
+}
+
+.innershopby h3 {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.categories img{
+  width: 100%;
+}
+
+@media screen and (min-width: 800px) {
+  .bannerm{
+    display: none
+  }
+  .bannerd{
+    display: block;
+  }
+  .inner {
+    max-width: 800px;
+  }
+  .inner img {
+    width: 200px;
+  }
+  .categories{
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 380px;
+  }
+  .himher{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+

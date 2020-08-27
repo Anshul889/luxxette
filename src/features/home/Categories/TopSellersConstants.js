@@ -1,0 +1,1 @@
+export const FETCH_TOPSELLERS = 'FETCH_TOPSELLERS';

@@ -1,0 +1,30 @@
+.image {
+  width: 100%;
+}
+
+.product {
+  width: 100%;
+}
+
+.image img {
+  width: 100%;
+  box-shadow:
+  0.1em 0.2em 0.9em rgba(0.1, 0.1, 0.1, 0.1);
+}
+
+.content a {
+  font-size: 12px;
+}
+
+.price a{
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.title a{
+  font-size: 14px;
+}
+
+.price {
+  margin-bottom: 5px;
+}

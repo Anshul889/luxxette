@@ -1,0 +1,3 @@
+export const FETCH_ORDERS = 'FETCH_ORDERS';
+export const SET_DELIVERED = 'SET_DELIVERED';
+export const SET_APPROVED = 'SET_APPROVED';

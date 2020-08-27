@@ -1,0 +1,21 @@
+.container {
+  margin: 20px auto;
+  width : 90%;
+  max-width: 1080px;
+}
+
+.review {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-gap: 5px;
+  padding-bottom: 20px;
+}
+
+.image img {
+  width: 100%;
+  border-radius: 80px;
+}
+
+.review p {
+  padding-left: 4px;
+}
