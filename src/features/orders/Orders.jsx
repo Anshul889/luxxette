@@ -30,7 +30,7 @@ class Orders extends Component {
             <div className={styles.orderdiv} key={order.id}>
               <div>
                 <span>{order.name} </span>
-                <span>{order.amount}KSH </span>
+                <span>${order.amount}</span>
                 <span>{format(order.date.toDate(), 'do LLL yyyy')}</span>
               </div>
               <div></div>

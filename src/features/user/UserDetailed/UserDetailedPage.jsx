@@ -163,7 +163,7 @@ class UserDetailedPage extends Component {
           orders.map(order => (
             <div className={styles.order} key={order.id}>
               <div>
-                <div>{order.amount}KSH</div>
+                <div>${order.amount}</div>
                 <div>status : {order.status}</div>
                 <div>{format(order.date.toDate(), "do LLL yyyy")}</div>
               </div>

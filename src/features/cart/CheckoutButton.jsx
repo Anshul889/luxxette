@@ -14,13 +14,13 @@ const CheckoutButton = ({price}) => {
     name='Anshul'
     billingAddress
     shippingAddress
-    image='https://svgshare.com/i/93J.svg'
-    description={`Your total is Rs ${price}`}
+    image='https://stripe.com/img/documentation/checkout/marketplace.png'
+    description={`Your total is $ ${price}`}
     amount={priceForStripe}
     panelLabel='Pay Now'
     token={onToken}
     stripeKey={publishableKey}
-    currency={'INR'}/>
+    currency={'USD'}/>
   )
 }
 

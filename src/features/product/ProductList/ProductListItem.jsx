@@ -25,13 +25,12 @@ class ProductListItem extends Component {
                             color: "gray"
                           }}
                         >
-                          <strike>{product.price} KSH</strike>
+                          <strike>${product.price}</strike>
                         </span>
                       )}
                       <Link to={`/product/${product.id}`}>
-                        {Math.round(product.price -
-                          (product.price * product.discount) / 100)}{" "}
-                        KSH
+                        ${Math.round(product.price -
+                          (product.price * product.discount) / 100)}
                       </Link>
                       <br />
                       {product.discount > 0 && (

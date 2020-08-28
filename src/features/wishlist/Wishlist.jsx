@@ -85,7 +85,7 @@ class Wishlist extends Component {
                       <Link to={`/product/${product.id}`}>{product.title}</Link>
                     </div>
                     <div className={styles.price}>
-                   Rs {" "}{product.price - (product.price * product.discount) / 100}
+                   ${product.price - (product.price * product.discount) / 100}
                     </div>
                   <img
                     alt='dislike'

@@ -76,11 +76,11 @@ class BestOffer extends Component {
                   <div className={styles.price}>
                   {product.discount > 0 && (
                       <span style={{ paddingRight: "5px", fontWeight: '100', color: 'gray'}}>
-                        <strike>Rs {product.price} </strike>
+                        <strike>${product.price} </strike>
                       </span>
                     )}
                     <Link to={`/product/${product.id}`}>
-                      Rs {Math.round(product.price - (product.price * product.discount) / 100)}
+                      ${Math.round(product.price - (product.price * product.discount) / 100)}
                       
                     </Link>
                     <br />

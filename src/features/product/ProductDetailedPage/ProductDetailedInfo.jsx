@@ -108,11 +108,11 @@ class ProductDetailedInfo extends React.Component {
             <div className={styles.pricing}>
               {product.discount > 0 && (
                 <strike style={{ fontWeight: '100', paddingRight: '5px' }}>
-                  Rs{product.price} {'  '}
+                  ${product.price} {'  '}
                 </strike>
               )}
               <span style={{ fontWeight: '800', paddingRight: '5px' }}>
-              Rs {Math.round(discountedPrice)} {' '}
+              ${Math.round(discountedPrice)}
               </span>
               {product.discount > 0 && (
                 <span
@@ -234,7 +234,7 @@ class ProductDetailedInfo extends React.Component {
             </div>
             <div>
               <div className={styles.shippingdetails}>
-                Free shipping for orders over Rs 1000 
+                Free shipping for orders over $10
               </div>
               <div className={styles.shippingdetails}>
                 Orders will be delivered within 2 days !

@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import { objectToArray } from '../../app/common/util/helpers';
 import UserAddressForm from '../user/UserDetailed/UserAddressForm';
 import { Loader, Button } from 'semantic-ui-react';
+import CheckoutButton from './CheckoutButton';
 
 const mapState = (state, ownProps) => ({
   address: state.firebase.profile.newAddress,
@@ -64,8 +65,8 @@ class Cart extends Component {
       );
 
     let shipping;
-    if (totalCartPrice < 1000) {
-      shipping = 300;
+    if (totalCartPrice < 10) {
+      shipping = 3;
     } else {
       shipping = 0;
     }
@@ -78,11 +79,7 @@ class Cart extends Component {
     if (cart && address && loading) {
       payButton = (
         <div className={styles.pay}>
-          <Button
-            color={'black'}
-            onClick={() => confirmOrder(totalAmount, cartob, address)}>
-            Confirm Order
-          </Button>
+          <CheckoutButton price={totalAmount}/>
         </div>
       );
     } else if (cart && !address && loading) {
@@ -193,7 +190,7 @@ class Cart extends Component {
                     )}
                   </div>
                   <div className={styles.price}>
-                    Rs{' '}
+                    ${' '}
                     {Math.round(
                       product.quantity *
                         (product.price -
@@ -211,7 +208,7 @@ class Cart extends Component {
           {cart.length !== 0 && { totalAmount } && (
             <div className={styles.totalcartprice}>
               <div className={styles.subtotal}>Subtotal: </div>
-              <div className={styles.totalpricenumber}>Rs {totalCartPrice}</div>
+              <div className={styles.totalpricenumber}>$ {totalCartPrice}</div>
             </div>
           )}
           {cart.length !== 0 && (
@@ -219,9 +216,9 @@ class Cart extends Component {
               Shipping :
               {shipping > 0 ? (
                 <>
-                  <div className={styles.shippingp}>Rs 300 </div>
+                  <div className={styles.shippingp}>$ 300 </div>
                   <div className={styles.shippingw}>
-                    Free shipping on orders above Rs 1000
+                    Free shipping on orders above $ 1000
                   </div>
                 </>
               ) : (
@@ -233,7 +230,7 @@ class Cart extends Component {
             <div className={styles.shippingc} style={{ paddingTop: '0px' }}>
               Vat(16%) :
               <div className={styles.shippingp}>
-                Rs {Math.round((16 * totalCartPrice) / 100)}{' '}
+                $ {Math.round((16 * totalCartPrice) / 100)}{' '}
               </div>
             </div>
           )}
@@ -241,7 +238,7 @@ class Cart extends Component {
         <div className={styles.total}>
           <div className={styles.innertotal}>
             <div>Total:</div>
-            <div>Rs {totalAmount}</div>
+            <div>$ {totalAmount}</div>
           </div>
         </div>
 

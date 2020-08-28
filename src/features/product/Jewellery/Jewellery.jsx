@@ -161,11 +161,11 @@ class Jewellery extends Component {
                             color: "gray"
                           }}
                         >
-                          <strike>Rs {product.price}</strike>
+                          <strike>${product.price}</strike>
                         </span>
                       )}
                       <Link to={`/product/${product.id}`}>
-                        Rs {" "}{Math.round(product.price -
+                        ${Math.round(product.price -
                           (product.price * product.discount) / 100)}
                       
                       </Link>
