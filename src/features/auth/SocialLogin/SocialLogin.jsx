@@ -8,10 +8,10 @@ const SocialLogin = ({socialLogin, closeModal, registerUser}) => {
           <Link to='/register'><Button onClick={closeModal} color="black" type="button" style={{marginBottom: '10px', borderRadius: '2px'}} fluid>
            Register with Email
           </Button></Link>
-          <Button onClick={() => socialLogin('facebook')} type="button" style={{marginBottom: '10px', borderRadius: '2px'}} fluid color="facebook">
+          {/* <Button onClick={() => socialLogin('facebook')} type="button" style={{marginBottom: '10px', borderRadius: '2px'}} fluid color="facebook">
             <Icon name="facebook" /> Login with Facebook
           </Button>
-    
+     */}
           <Button onClick={() => socialLogin('google')} style={{marginBottom: '10px', borderRadius: '2px'}} type="button" fluid color="google plus">
             <Icon name="google" />
             Login with Google

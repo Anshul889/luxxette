@@ -21,11 +21,8 @@
   display: none;
 }
 
-.image {
+.imagerelated {
   width: 100%;
-  box-shadow:
-  0.1em 0.2em 0.9em rgba(0.1, 0.1, 0.1, 0.1);
-  -webkit-box-shadow: 0.1em 0.2em 0.9em rgba(0.1, 0.1, 0.1, 0.1);
 }
 
 .product {

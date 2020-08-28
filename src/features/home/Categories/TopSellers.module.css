@@ -12,7 +12,7 @@
 
 .inner {
   display: grid;
-  grid-template-columns: repeat(6, 36%);
+  grid-template-columns: 36% 36% 36% 36% 36% 36% 5%;
   overflow: scroll;
   grid-gap: 20px;
 }

@@ -12,6 +12,6 @@ const deleteEmail = (state, payload) => {
 }
 
 export default createReducer(initialState, {
-  FETCH_EMAILS: fetchEmails,
-  DELETE_EMAIL: deleteEmail
+  [FETCH_EMAILS]: fetchEmails,
+  [DELETE_EMAIL]: deleteEmail
 })

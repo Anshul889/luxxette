@@ -59,7 +59,7 @@ class HomePage extends Component {
                 cosmopolis de metropolitan.
               </p>
               <Link to="/him">
-                <Button fluid style={{ textTransform: "uppercase" }}>
+                <Button color={'white'} fluid style={{ textTransform: "uppercase" }}>
                   Shop Now
                 </Button>
               </Link>

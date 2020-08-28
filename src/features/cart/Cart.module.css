@@ -6,10 +6,11 @@
 
 .heading {
   text-align: center;
-  background-color: darkgrey;
+  background-color: black;
   text-transform: uppercase;
   font-weight: 100;
   margin-bottom: 22px;
+  color: white;
 }
 
 .cartempty {
@@ -77,7 +78,7 @@
 }
 
 .delete {
-  color: #c29958;
+  color: gray;
   text-decoration: underline;
   justify-self: center;
 }

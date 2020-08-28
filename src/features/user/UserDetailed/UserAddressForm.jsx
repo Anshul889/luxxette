@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TextInput from "../../../app/common/form/TextArea";
+import TextInput from "../../../app/common/form/TextInput";
 import { Field, reduxForm } from "redux-form";
 import { Form, Button } from "semantic-ui-react";
 import { addAddress } from "../userActions";
@@ -67,13 +67,13 @@ class UserAddressForm extends Component {
       <div style={{width: '90%', margin: '50px auto', marginTop: '10px'}}>
         <h2>Delivery Address 1</h2>
         <Form onSubmit={this.props.handleSubmit(this.handleAddressSubmit)} >
-          <Field placeholder={'Name'} name="Name" type="text" component={TextInput} rows={1} />
-          <Field placeholder={'Address'} name="Address" type="text" component={TextInput} rows={2} />
-          <Field placeholder={'City'} name="City" type="text" component={TextInput} rows={1} />
-          <Field placeholder={'postcode'}name="postcode" type="text" component={TextInput} rows={1} />
-          <Field placeholder={'email'} name='email' type='text' component={TextInput} rows={1} />
-          <Field placeholder={'phone number'} name='phone' type='text' component={TextInput} rows={1} />
-          <Button color={'black'} disabled={invalid || submitting || pristine} content="Submit"/>
+          <Field placeholder={'Name'} name="Name"  component={TextInput} rows={1} autoComplete="name"/>
+          <Field placeholder={'Address'} name="Address"  component={TextInput} rows={2} />
+          <Field placeholder={'City'} name="City" component={TextInput} rows={1} />
+          <Field placeholder={'postcode'}name="postcode"  component={TextInput} rows={1} />
+          <Field placeholder={'email'} name='email'  component={TextInput} rows={1} autoComplete="email" />
+          <Field placeholder={'phone number'} name='phone'  component={TextInput} rows={1} />
+          <Button disabled={invalid || submitting || pristine} color={'black'} content="Submit"/>
           <Button color='red' onClick={() => this.props.closeForm()} content="Cancel"/>
         </Form>
       </div>

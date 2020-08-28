@@ -30,7 +30,7 @@ class ProductRelatedItems extends Component {
           {relatedItems &&
             relatedItems.map(product => (
               <div className={styles.product} key={product.id}>
-                <div className={styles.image}>
+                <div className={styles.imagerelated}>
                   <Link to={`/product/${product.id}`}>
                     <LazyLoadImage
                       alt={product.title}
