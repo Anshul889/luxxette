@@ -129,6 +129,7 @@ export const addReview = (product, values) => {
       comment: values.comment,
       photoURL: profile.photoURL || '../../../assets/icons/user-circle.svg',
       displayName: profile.displayName,
+      addDate: firestore.FieldValue.serverTimestamp(),
     }
     try {
       await firestore.update(`products/${product.id}`, {

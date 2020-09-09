@@ -19,9 +19,9 @@
 .container{
   width: 90%;
   margin: 0 auto;
-  padding-bottom: 25px;
+  padding-bottom: 45px;
   padding-top: 10px;
-  max-width: 1080px;
+  max-width: 1400px;
 }
 
 .container h2 {
@@ -29,7 +29,7 @@
 }
 
 .filter {
-  max-width: 1080px;
+  max-width: 1400px;
   padding: 20px 0;
   display: grid;
   grid-template-columns: max-content max-content max-content;
@@ -79,13 +79,13 @@
     height: 250px;
   }
   .filter{
-    max-width: 1080px;
+    max-width: 1400px;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
   }
   .inner {
     grid-template-columns: repeat(4, 1fr);
-    max-width: 1080px;
+    max-width: 1400px;
     margin: 0 auto;
   }
 }

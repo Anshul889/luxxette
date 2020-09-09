@@ -1,7 +1,7 @@
 .container {
   margin: 20px auto;
   width : 90%;
-  max-width: 1080px;
+  max-width: 1400px;
 }
 
 .review {
@@ -18,4 +18,10 @@
 
 .review p {
   padding-left: 4px;
+}
+
+@media screen and (min-width: 800px) {
+  .container{
+    width: 95%;
+  }
 }
