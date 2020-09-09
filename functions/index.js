@@ -33,3 +33,10 @@ exports.testfunction = functions
 
     return { email }
   })
+
+exports.stripetoken = functions
+  .region('asia-south1')
+  .https.onCall(async (data, context) => {
+    const token = data.token
+    return token.id //token.id for source
+  })

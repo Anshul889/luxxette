@@ -7,7 +7,7 @@ import {
   addQuantity,
   subtractQuantity,
   removeMpesaNumber,
-  getEmail
+  onToken
 } from '../../features/user/userActions';
 import { compose } from 'redux';
 import styles from './Cart.module.css';
@@ -30,7 +30,7 @@ const actions = {
   addQuantity,
   subtractQuantity,
   removeMpesaNumber,
-  getEmail
+  onToken
 };
 
 class Cart extends Component {
@@ -57,7 +57,7 @@ class Cart extends Component {
       cartob,
       loading,
       addQuantity,
-      getEmail,
+      onToken,
       subtractQuantity
     } = this.props;
     let totalCartPrice =
@@ -82,7 +82,7 @@ class Cart extends Component {
     if (cart && address && loading) {
       payButton = (
         <div className={styles.pay}>
-          <CheckoutButton price={totalAmount}/>
+          <CheckoutButton price={totalAmount} onToken={onToken} />
         </div>
       );
     } else if (cart && !address && loading) {
@@ -286,7 +286,6 @@ class Cart extends Component {
           <UserAddressForm closeForm={this.closeForm} />
         )}
         {payButton}
-        <Button onClick={() => getEmail()}>Get Email</Button>
       </div>
     );
   }

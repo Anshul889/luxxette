@@ -513,11 +513,11 @@ export const notify = (product) => {
   }
 }
 
-export const getEmail = () => {
+export const onToken = (token) => {
   return async () => {
-    const gettheEmail = firebase.app().functions('asia-south1').httpsCallable('helloworld')
+    const gettheEmail = firebase.app().functions('asia-south1').httpsCallable('stripetoken')
     try {
-      const response = await gettheEmail()
+      const response = await gettheEmail({token})
       console.log(response.data)
     } catch (e) {
       console.log(e)
