@@ -41,8 +41,8 @@
   .inner{
     grid-template-columns: repeat(5, 1fr);
     margin: 0 auto;
-    max-width: 1080px;
-    width: 90%;
+    max-width: 1400px;
+    width: 95%;
     padding: 0 2%;
   }
   .product{

@@ -1,6 +1,6 @@
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
-admin.initializeApp();
+admin.initializeApp()
 
 const db = admin.firestore()
 
@@ -12,21 +12,24 @@ const db = admin.firestore()
 //   response.send("Hello from Firebase!");
 // });
 
-exports.helloworld = functions.region('asia-south1').https.onCall(async (data, context) => {
-  const userId = context.auth.uid;
-  const userRef = db.doc(`users/${userId}`);
-  const userSnap = await userRef.get();
-  const email = userSnap.data().email;
-  console.log('hello world')
-  return {email};
-})
+exports.helloworld = functions
+  .region('asia-south1')
+  .https.onCall(async (data, context) => {
+    const userId = context.auth.uid
+    const userRef = db.doc(`users/${userId}`)
+    const userSnap = await userRef.get()
+    const email = userSnap.data().email
+    console.log('hello world')
+    return { email }
+  })
 
-exports.testfunction = functions.region('asia-south1').https.onCall(async (data, context) => {
-  const userId = context.auth.uid;
-  const userRef = db.doc(`users/${userId}`);
-  const userSnap = await userRef.get();
-  const email = userSnap.data().email;
+exports.testfunction = functions
+  .region('asia-south1')
+  .https.onCall(async (data, context) => {
+    const userId = context.auth.uid
+    const userRef = db.doc(`users/${userId}`)
+    const userSnap = await userRef.get()
+    const email = userSnap.data().email
 
-  return {email};
-})
-
+    return { email }
+  })

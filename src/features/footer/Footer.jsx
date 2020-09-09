@@ -6,7 +6,7 @@ export const Footer = () => {
   return (
     <div className={styles.footer}>
       <div className={styles.sec1}>
-        <p>© 2020 THE BAGRATICA CARICODE STORE DEMO.<br/> ECOMMERCE SOFTWARE BY CARICODE.</p>
+        <p>© 2020 LUXETTE CARICODE STORE DEMO.<br/> ECOMMERCE SOFTWARE BY CARICODE.</p>
       </div>
       <div className={styles.sec2}>
         <h3>Contact Us</h3>

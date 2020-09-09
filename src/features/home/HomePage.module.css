@@ -192,6 +192,15 @@
   .inner img {
     width: 200px;
   }
+  .innershopby{
+    width: 95%;
+  }
+  .innershopby h3{
+    padding: 30px 0
+  }
+  .innersavings{
+    margin: 30px 5%;
+  }
   .categories{
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 380px;

@@ -22,7 +22,7 @@
   font-weight: bold;
   padding-bottom: 10px;
   text-transform: capitalize;
-  max-width: 1080px;
+  max-width: 1400px;
 }
 
 .product {
@@ -100,9 +100,9 @@
 
 @media screen and (min-width: 800px) {
   .product {
-    grid-template-columns: 1fr 1fr;
-    max-width: 1080px;
-    padding: 50px 0;
+    grid-template-columns: 1fr 2fr;
+    max-width: 1400px;
+    padding: 20px 0;
     grid-gap: 80px;
   }
   .description{

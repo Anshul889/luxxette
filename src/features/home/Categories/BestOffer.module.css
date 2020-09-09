@@ -64,6 +64,7 @@
   }
   .inner{
     grid-template-columns: repeat(4, 1fr);
-    max-width: 1024px;
+    max-width: 1400px;
+    width: 95%;
   }
 }
