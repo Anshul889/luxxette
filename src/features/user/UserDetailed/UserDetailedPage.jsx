@@ -71,6 +71,7 @@ class UserDetailedPage extends Component {
             <div className={styles.membersince}>
               Member Since: <strong>{createdAt}</strong>
             </div>
+            <div className={styles.refcode}>Share code: {profile.refcode} for a 10% discount on your next purchase</div>
           </div>
           <Button color={'black'}onClick={this.handleSignOut}>Logout</Button>
         </div>

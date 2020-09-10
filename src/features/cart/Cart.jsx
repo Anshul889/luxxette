@@ -5,7 +5,6 @@ import {
   removeFromCart,
   addQuantity,
   subtractQuantity,
-  removeMpesaNumber,
   onToken
 } from '../../features/user/userActions';
 import { compose } from 'redux';
@@ -15,19 +14,20 @@ import { objectToArray } from '../../app/common/util/helpers';
 import UserAddressForm from '../user/UserDetailed/UserAddressForm';
 import { Loader, Button } from 'semantic-ui-react';
 import CheckoutButton from './CheckoutButton';
+import FriendCode from './FriendCode'
 
 const mapState = (state, ownProps) => ({
   address: state.firebase.profile.newAddress,
   cart: objectToArray(state.firebase.profile.cart) || [],
   cartob: state.firebase.profile.cart,
-  loading: !state.async.loading
+  loading: !state.async.loading,
+  friendcode: state.firebase.profile.friendcode,
 });
 
 const actions = {
   removeFromCart,
   addQuantity,
   subtractQuantity,
-  removeMpesaNumber,
   onToken
 };
 
@@ -35,16 +35,17 @@ class Cart extends Component {
   state = {
     isAddressOneOpen: false,
     isAddressTwoOpen: false,
-    isMpesaFormOpen: false
+    isMpesaFormOpen: false,
+    isFriendCodeFormOpen: true,
   };
 
   closeForm = () => {
     this.setState({ isAddressOneOpen: false });
   };
 
-  closeMpesaForm = () => {
-    this.setState({ isMpesaFormOpen: false });
-  };
+  closeFriendCodeForm = () => {
+    this.setState({ isFriendCodeFormOpen: false })
+  }
 
   render() {
     const {
@@ -55,7 +56,8 @@ class Cart extends Component {
       loading,
       addQuantity,
       onToken,
-      subtractQuantity
+      subtractQuantity,
+      friendcode
     } = this.props;
     let totalCartPrice =
       cart &&
@@ -79,7 +81,7 @@ class Cart extends Component {
     if (cart && address && loading) {
       payButton = (
         <div className={styles.pay}>
-          <CheckoutButton price={totalAmount} onToken={onToken} cartob={cartob} address={address}/>
+          <CheckoutButton price={totalAmount} onToken={onToken} cartob={cartob} address={address} friendcode={friendcode}/>
         </div>
       );
     } else if (cart && !address && loading) {
@@ -241,7 +243,23 @@ class Cart extends Component {
             <div>$ {totalAmount}</div>
           </div>
         </div>
-
+        {cart.length !== 0 &&
+          !friendcode &&
+          this.state.isFriendCodeFormOpen && (
+            <FriendCode closeFriendCodeForm={this.closeFriendCodeForm} />
+          )}
+          {cart.length !== 0 && friendcode && (
+          <div
+            style={{
+              color: 'green',
+              width: '90%',
+              maxWidth: '1080px',
+              margin: '10px auto',
+            }}
+          >
+            Referral Code Added !
+          </div>
+        )}
         {cart.length !== 0 && !address && (
           <div className={styles.addaddress}>
             <Button

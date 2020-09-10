@@ -39,6 +39,7 @@ exports.stripetoken = functions
   .https.onCall(async (data, context) => {
     const token = data.token.id
     const price = data.price
+    const friendcode = data.friendcode
     const userId = context.auth.uid
     if (userId) {
       const userRef = db.doc(`users/${userId}`)
@@ -76,8 +77,8 @@ exports.stripetoken = functions
         [`cart`]: {},
         [`previousOrder`]: cart,
         [`previousOrderStatus`]: 'approved',
+        [`friendcode`]: admin.firestore.FieldValue.delete(),
       })
-      console.log('succesful')
       return 'paymnent succesful'
     } else {
       return 'Login to continue'

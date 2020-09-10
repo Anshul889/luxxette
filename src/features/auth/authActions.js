@@ -64,6 +64,7 @@ export const socialLogin = selectedProvider => async (
       await firestore.set(`users/${user.user.uid}`, {
         displayName: user.profile.displayName,
         photoURL: user.profile.avatarUrl,
+        refcode: user.profile.email.slice(0, 6) + Math.floor(Math.random() * 9999),
         email: user.profile.email,
         createdAt: firestore.FieldValue.serverTimestamp()
       });

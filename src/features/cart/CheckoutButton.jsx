@@ -3,13 +3,13 @@ import StripeCheckout from 'react-stripe-checkout'
 import { Button } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 
-const CheckoutButton = withRouter(({ history, price, onToken}) => {
+const CheckoutButton = withRouter(({ history, price, onToken, friendcode}) => {
   const priceForStripe = price * 100
   const publishableKey = 'pk_test_MQZ7qGlUkuJYuYORZLYRduQW008WmFtzTe'
 
   const onReceiveToken = async (token) => {
     try {
-      await onToken(token, price);
+      await onToken(token, price, friendcode);
       history.push('/complete')
     } catch (e) {
       console.log(e)

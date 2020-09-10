@@ -230,7 +230,6 @@ export const removeReview = (product) => async (
   }
 }
 
-
 export const addQuantity = (product) => async (
   dispatch,
   getState,
@@ -271,37 +270,6 @@ export const subtractQuantity = (product) => async (
   }
 }
 
-export const addMpesaNumber = (values) => {
-  return async (dispatch, getState, { getFirestore, getFirebase }) => {
-    const firestore = getFirestore()
-    const firebase = getFirebase()
-    const user = firebase.auth().currentUser
-    try {
-      await firestore.update(`users/${user.uid}`, {
-        [`mpesanumber`]: parseInt(values.mpesa),
-        [`verification`]: values.Verification,
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
-}
-
-export const removeMpesaNumber = () => {
-  return async (dispatch, getState, { getFirestore, getFirebase }) => {
-    const firestore = getFirestore()
-    const firebase = getFirebase()
-    const user = firebase.auth().currentUser
-    try {
-      await firestore.update(`users/${user.uid}`, {
-        [`mpesanumber`]: firestore.FieldValue.delete(),
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
-}
-
 export const getOrderHistory = () => {
   return async (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = firebase.firestore()
@@ -318,6 +286,21 @@ export const getOrderHistory = () => {
         orders.push(order)
       }
       dispatch({ type: FETCH_USER_ORDERS, payload: { orders } })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const addFriendCode = (values) => {
+  return async (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore()
+    const firebase = getFirebase()
+    const user = firebase.auth().currentUser
+    try {
+      await firestore.update(`users/${user.uid}`, {
+        [`friendcode`]: values.FriendCode,
+      })
     } catch (error) {
       console.log(error)
     }
@@ -357,14 +340,14 @@ export const notify = (product) => {
   }
 }
 
-export const onToken = (token, price, cartob, address) => {
+export const onToken = (token, price, friendcode) => {
   return async () => {
     const gettheEmail = firebase
       .app()
       .functions('asia-south1')
       .httpsCallable('stripetoken')
     try {
-      const response = await gettheEmail({ token, price, cartob, address })
+      const response = await gettheEmail({ token, price, friendcode })
       console.log(response.data)
     } catch (e) {
       console.log(e)
