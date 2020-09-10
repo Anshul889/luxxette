@@ -15,6 +15,7 @@ import Bags from '../../features/product/Bags/Bags';
 import Register from '../../features/auth/Login/Register';
 import Orders from '../../features/orders/Orders';
 import NotifyPeople from '../../features/notifypeople/NotifyPeople';
+import Complete from '../../features/complete/Complete';
 
 class App extends Component {
   render() {
@@ -33,7 +34,8 @@ class App extends Component {
           <Route exact path='/tops' component={Jewellery}/>
           <Route exact path='/tunics' component={Bags}/>
           <Route exact path='/register' component={Register}/>
-          <Route exact path='/orders789' component={Orders}/>
+          <Route exact path='/orders' component={Orders}/>
+          <Route exact path='/complete' component={Complete}/>
           <Route exact path='/notifypeople' component={NotifyPeople} />
         </Switch>
         <Footer />

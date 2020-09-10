@@ -37,6 +37,49 @@ exports.testfunction = functions
 exports.stripetoken = functions
   .region('asia-south1')
   .https.onCall(async (data, context) => {
-    const token = data.token
-    return token.id //token.id for source
+    const token = data.token.id
+    const price = data.price
+    const userId = context.auth.uid
+    if (userId) {
+      const userRef = db.doc(`users/${userId}`)
+      const userSnap = await userRef.get()
+      const email = userSnap.data().newAddress.email
+      const address = userSnap.data().newAddress.Address
+      const postcode = userSnap.data().newAddress.postcode
+      const phone = userSnap.data().newAddress.phone
+      const cart = userSnap.data().cart
+      const city = userSnap.data().newAddress.City
+      await db.collection(`orders`).add({
+        email,
+        address,
+        postcode,
+        phone,
+        price,
+        products: cart,
+        userid: userId,
+        city,
+        status: 'approved',
+        time: admin.firestore.FieldValue.serverTimestamp(),
+      })
+      for (let cartKey in cart) {
+        var negativecartProductQuantity = Math.sign(-1) * cart[cartKey].quantity
+        db.doc(`products/${cartKey}`).update({
+          [`remainingQuantity`]: admin.firestore.FieldValue.increment(
+            negativecartProductQuantity
+          ),
+          [`sold`]: admin.firestore.FieldValue.increment(
+            cart[cartKey].quantity
+          ),
+        })
+      }
+      await userRef.update({
+        [`cart`]: {},
+        [`previousOrder`]: cart,
+        [`previousOrderStatus`]: 'approved',
+      })
+      console.log('succesful')
+      return 'paymnent succesful'
+    } else {
+      return 'Login to continue'
+    }
   })

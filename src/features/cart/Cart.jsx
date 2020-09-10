@@ -82,7 +82,7 @@ class Cart extends Component {
     if (cart && address && loading) {
       payButton = (
         <div className={styles.pay}>
-          <CheckoutButton price={totalAmount} onToken={onToken} />
+          <CheckoutButton price={totalAmount} onToken={onToken} cartob={cartob} address={address}/>
         </div>
       );
     } else if (cart && !address && loading) {

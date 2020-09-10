@@ -163,9 +163,9 @@ class UserDetailedPage extends Component {
           orders.map(order => (
             <div className={styles.order} key={order.id}>
               <div>
-                <div>${order.amount}</div>
+                <div>${order.price}</div>
                 <div>status : {order.status}</div>
-                <div>{format(order.date.toDate(), "do LLL yyyy")}</div>
+                <div>{format(order.time.toDate(), "do LLL yyyy")}</div>
               </div>
               <div className={styles.productcolumn}>
                 {objectToArray(order.products).map(product => (
