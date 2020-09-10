@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import {
   removeFromCart,
-  confirmOrder,
   addQuantity,
   subtractQuantity,
   removeMpesaNumber,
@@ -26,7 +25,6 @@ const mapState = (state, ownProps) => ({
 
 const actions = {
   removeFromCart,
-  confirmOrder,
   addQuantity,
   subtractQuantity,
   removeMpesaNumber,
@@ -53,7 +51,6 @@ class Cart extends Component {
       removeFromCart,
       cart,
       address,
-      confirmOrder,
       cartob,
       loading,
       addQuantity,

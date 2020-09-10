@@ -10,7 +10,7 @@ export const getOrders = () => async (dispatch, getState) => {
   const firestore = firebase.firestore();
   try {
     dispatch(asyncActionStart());
-    let ordersQuery = await firestore.collection("orders").where("status", "==", 'approved').get();
+    let ordersQuery = await firestore.collection("orders").where("status", "==", "approved").get();
     let orders = [];
 
     for (let i = 0; i < ordersQuery.docs.length; i++) {
