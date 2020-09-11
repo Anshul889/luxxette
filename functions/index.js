@@ -23,17 +23,6 @@ exports.helloworld = functions
     return { email }
   })
 
-exports.testfunction = functions
-  .region('asia-south1')
-  .https.onCall(async (data, context) => {
-    const userId = context.auth.uid
-    const userRef = db.doc(`users/${userId}`)
-    const userSnap = await userRef.get()
-    const email = userSnap.data().email
-
-    return { email }
-  })
-
 exports.stripetoken = functions
   .region('asia-south1')
   .https.onCall(async (data, context) => {
@@ -44,21 +33,18 @@ exports.stripetoken = functions
     if (userId) {
       const userRef = db.doc(`users/${userId}`)
       const userSnap = await userRef.get()
-      const email = userSnap.data().newAddress.email
-      const address = userSnap.data().newAddress.Address
-      const postcode = userSnap.data().newAddress.postcode
-      const phone = userSnap.data().newAddress.phone
+      const {email, Address, postcode, City, Name,  phone} =userSnap.data().newAddress
       const cart = userSnap.data().cart
-      const city = userSnap.data().newAddress.City
       await db.collection(`orders`).add({
         email,
-        address,
+        address: Address,
         postcode,
         phone,
         price,
         products: cart,
         userid: userId,
-        city,
+        city: City,
+        name: Name,
         status: 'approved',
         time: admin.firestore.FieldValue.serverTimestamp(),
       })

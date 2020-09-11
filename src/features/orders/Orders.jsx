@@ -38,12 +38,12 @@ class Orders extends Component {
               <div>status :{order.status}</div>
               <div></div>
               <div>
-                <span>{order.street} </span>
+                <span>{order.address} </span>
                 <span>{order.postcode}</span>
               </div>
               <div>
                 {objectToArray(order.products).map(product => (
-                  <div>
+                  <div key={product.id}>
                     <div>item: {product.title}</div>
                     <div>quantity: {product.quantity}</div>
                     <div>model: {product.model}</div>

@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
 import {
   removeFromCart,
   addQuantity,
   subtractQuantity,
-  onToken
-} from '../../features/user/userActions';
-import { compose } from 'redux';
-import styles from './Cart.module.css';
-import { Link } from 'react-router-dom';
-import { objectToArray } from '../../app/common/util/helpers';
-import UserAddressForm from '../user/UserDetailed/UserAddressForm';
-import { Loader, Button } from 'semantic-ui-react';
-import CheckoutButton from './CheckoutButton';
+  onToken,
+} from '../../features/user/userActions'
+import { compose } from 'redux'
+import styles from './Cart.module.css'
+import { Link } from 'react-router-dom'
+import { objectToArray } from '../../app/common/util/helpers'
+import UserAddressForm from '../user/UserDetailed/UserAddressForm'
+import { Loader, Button } from 'semantic-ui-react'
+import CheckoutButton from './CheckoutButton'
 import FriendCode from './FriendCode'
 
 const mapState = (state, ownProps) => ({
@@ -22,14 +22,15 @@ const mapState = (state, ownProps) => ({
   cartob: state.firebase.profile.cart,
   loading: !state.async.loading,
   friendcode: state.firebase.profile.friendcode,
-});
+  coupon: state.firebase.profile.coupons,
+})
 
 const actions = {
   removeFromCart,
   addQuantity,
   subtractQuantity,
-  onToken
-};
+  onToken,
+}
 
 class Cart extends Component {
   state = {
@@ -37,11 +38,11 @@ class Cart extends Component {
     isAddressTwoOpen: false,
     isMpesaFormOpen: false,
     isFriendCodeFormOpen: true,
-  };
+  }
 
   closeForm = () => {
-    this.setState({ isAddressOneOpen: false });
-  };
+    this.setState({ isAddressOneOpen: false })
+  }
 
   closeFriendCodeForm = () => {
     this.setState({ isFriendCodeFormOpen: false })
@@ -57,35 +58,55 @@ class Cart extends Component {
       addQuantity,
       onToken,
       subtractQuantity,
-      friendcode
-    } = this.props;
+      friendcode,
+      coupon,
+    } = this.props
     let totalCartPrice =
       cart &&
       cart.length !== 0 &&
       Math.round(
-        cart.map(item => item.totalPrice).reduce((prev, next) => prev + next)
-      );
+        cart.map((item) => item.totalPrice).reduce((prev, next) => prev + next)
+      )
 
-    let shipping;
+    let shipping
     if (totalCartPrice < 10) {
-      shipping = 3;
+      shipping = 3
     } else {
-      shipping = 0;
+      shipping = 0
     }
-    const totalAmount =
-      cart &&
-      cart.length !== 0 &&
-      Math.round(shipping + totalCartPrice + (16 * totalCartPrice) / 100);
+    let totalAmount
+    if (coupon > 0) {
+      totalAmount =
+        cart &&
+        cart.length !== 0 &&
+        Math.round(
+          shipping +
+            totalCartPrice -
+            (10 * totalCartPrice) / 100 +
+            (18 * totalCartPrice) / 100
+        )
+    } else {
+      totalAmount =
+        cart &&
+        cart.length !== 0 &&
+        Math.round(shipping + totalCartPrice + (18 * totalCartPrice) / 100)
+    }
 
-    let payButton;
+    let payButton
     if (cart && address && loading) {
       payButton = (
         <div className={styles.pay}>
-          <CheckoutButton price={totalAmount} onToken={onToken} cartob={cartob} address={address} friendcode={friendcode}/>
+          <CheckoutButton
+            price={totalAmount}
+            onToken={onToken}
+            cartob={cartob}
+            address={address}
+            friendcode={friendcode}
+          />
         </div>
-      );
+      )
     } else if (cart && !address && loading) {
-      payButton = null;
+      payButton = null
     } else if (cart && address && !loading) {
       payButton = (
         <div className={styles.pay}>
@@ -93,7 +114,7 @@ class Cart extends Component {
             <span>Loading</span>
           </button>
         </div>
-      );
+      )
     }
 
     if (cart && cart.length === 0 && loading) {
@@ -113,7 +134,7 @@ class Cart extends Component {
             </div>
           </div>
         </div>
-      );
+      )
     } else if (!cart && loading) {
       return (
         <div>
@@ -131,7 +152,7 @@ class Cart extends Component {
             </div>
           </div>
         </div>
-      );
+      )
     } else if (cart && cart.length === 0 && !loading) {
       return (
         <div>
@@ -151,7 +172,7 @@ class Cart extends Component {
             </div>
           </div>
         </div>
-      );
+      )
     }
 
     return (
@@ -168,7 +189,7 @@ class Cart extends Component {
           <div className={styles.inner}>
             {cart &&
               cart.length !== 0 &&
-              cart.map(product => (
+              cart.map((product) => (
                 <div className={styles.product} key={product.id}>
                   <div className={styles.image}>
                     <Link to={`/product/${product.id}`}>
@@ -201,7 +222,8 @@ class Cart extends Component {
                   </div>
                   <div
                     className={styles.delete}
-                    onClick={() => removeFromCart(product)}>
+                    onClick={() => removeFromCart(product)}
+                  >
                     delete
                   </div>
                 </div>
@@ -218,14 +240,25 @@ class Cart extends Component {
               Shipping :
               {shipping > 0 ? (
                 <>
-                  <div className={styles.shippingp}>$ 300 </div>
+                  <div className={styles.shippingp}>$ 3 </div>
                   <div className={styles.shippingw}>
-                    Free shipping on orders above $ 1000
+                    Free shipping on orders above $ 10
                   </div>
                 </>
               ) : (
                 <div className={styles.shippingp}>Free</div>
               )}
+            </div>
+          )}
+          {coupon > 0 && (
+            <div
+              className={styles.shippingc}
+              style={{ paddingTop: '0px', color: 'green' }}
+            >
+              Referral Discount
+              <div className={styles.shippingp} style={{ color: 'green' }}>
+                $ {Math.round((10 * totalCartPrice) / 100)}
+              </div>
             </div>
           )}
           {cart.length !== 0 && (
@@ -248,7 +281,7 @@ class Cart extends Component {
           this.state.isFriendCodeFormOpen && (
             <FriendCode closeFriendCodeForm={this.closeFriendCodeForm} />
           )}
-          {cart.length !== 0 && friendcode && (
+        {cart.length !== 0 && friendcode && (
           <div
             style={{
               color: 'green',
@@ -257,7 +290,7 @@ class Cart extends Component {
               margin: '10px auto',
             }}
           >
-            Referral Code Added !
+            Referral Code '{friendcode}' Added !
           </div>
         )}
         {cart.length !== 0 && !address && (
@@ -268,9 +301,10 @@ class Cart extends Component {
               onClick={() =>
                 this.setState({
                   isAddressOneOpen: !this.state.isAddressOneOpen,
-                  isAddressTwoOpen: false
+                  isAddressTwoOpen: false,
                 })
-              }>
+              }
+            >
               Add Address
             </Button>
           </div>
@@ -284,15 +318,16 @@ class Cart extends Component {
             <span
               onClick={() =>
                 this.setState({
-                  isAddressOneOpen: !this.state.isAddressOneOpen
+                  isAddressOneOpen: !this.state.isAddressOneOpen,
                 })
               }
               style={{
                 color: '#c29957',
                 fontWeight: '100',
                 cursor: 'pointer',
-                textDecoration: 'underline'
-              }}>
+                textDecoration: 'underline',
+              }}
+            >
               edit
             </span>
           </div>
@@ -302,8 +337,8 @@ class Cart extends Component {
         )}
         {payButton}
       </div>
-    );
+    )
   }
 }
 
-export default compose(connect(mapState, actions), firestoreConnect())(Cart);
+export default compose(connect(mapState, actions), firestoreConnect())(Cart)

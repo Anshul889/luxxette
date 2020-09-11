@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import TextInput from '../../app/common/form/TextArea';
 import { Field, reduxForm } from 'redux-form';
-import { Form, Button, Grid } from 'semantic-ui-react';
+import { Form, Button,} from 'semantic-ui-react';
 import { addFriendCode } from '../user/userActions';
 import { connect } from 'react-redux';
 import { withFirestore } from 'react-redux-firebase';
 import {
   composeValidators,
   combineValidators,
-  isRequired,
-  isNumeric,
   hasLengthBetween
 } from 'revalidate';
 import styles from './FriendCode.module.css'
