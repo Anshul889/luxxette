@@ -79,6 +79,20 @@ exports.stripetoken = functions
         [`previousOrderStatus`]: 'approved',
         [`friendcode`]: admin.firestore.FieldValue.delete(),
       })
+      if(friendcode){
+        const response = await db
+        .collection('users')
+        .where('refcode', '==', friendcode)
+        .get()
+        if (response.docs.length === 1) {
+          await db
+            .collection('users')
+            .doc(`${response.docs[0]._ref._path.segments[1]}`)
+            .update({
+              [`coupons`]: admin.firestore.FieldValue.increment(1),
+              [`totalreferrals`]: admin.firestore.FieldValue.increment(1),
+            })}
+      }
       return 'paymnent succesful'
     } else {
       return 'Login to continue'
