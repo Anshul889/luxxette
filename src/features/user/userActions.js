@@ -13,8 +13,8 @@ export const addToCart = (product, values) => async (
   { getFirebase, getFirestore }
 ) => {
   const firestore = getFirestore()
-  const firebase = getFirebase()
-  const user = firebase.auth().currentUser
+  const firebasex = getFirebase()
+  const user = firebasex.auth().currentUser
   const newProduct = {
     ...product,
     quantity: values.quantity,
@@ -27,6 +27,7 @@ export const addToCart = (product, values) => async (
     await firestore.update(`users/${user.uid}`, {
       [`cart.${product.id}`]: newProduct,
     })
+    firebase.analytics().logEvent('add to cart' , {product: product.title})
   } catch (error) {
     console.log(error)
   }

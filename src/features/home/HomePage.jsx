@@ -6,8 +6,19 @@ import { Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Slideshow from "./Slideshow";
 import SlideshowD from "./Categories/SlideshowD";
+import firebase from '../../app/config/firebase.js'
 
 class HomePage extends Component {
+  componentDidMount(){
+    const messaging = firebase.messaging()
+    messaging.requestPermission().then((token)=> {
+      return messaging.getToken()
+    }).then(token => {
+      console.log(token)
+    }).catch(() =>
+      console.log('error')
+    )
+  }
   render() {
     return (
       <div>

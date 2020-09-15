@@ -3,6 +3,7 @@ const admin = require('firebase-admin')
 admin.initializeApp()
 
 const db = admin.firestore()
+const messaging = admin.messaging()
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -33,7 +34,14 @@ exports.stripetoken = functions
     if (userId) {
       const userRef = db.doc(`users/${userId}`)
       const userSnap = await userRef.get()
-      const {email, Address, postcode, City, Name,  phone} =userSnap.data().newAddress
+      const {
+        email,
+        Address,
+        postcode,
+        City,
+        Name,
+        phone,
+      } = userSnap.data().newAddress
       const cart = userSnap.data().cart
       await db.collection(`orders`).add({
         email,
@@ -65,11 +73,11 @@ exports.stripetoken = functions
         [`previousOrderStatus`]: 'approved',
         [`friendcode`]: admin.firestore.FieldValue.delete(),
       })
-      if(friendcode){
+      if (friendcode) {
         const response = await db
-        .collection('users')
-        .where('refcode', '==', friendcode)
-        .get()
+          .collection('users')
+          .where('refcode', '==', friendcode)
+          .get()
         if (response.docs.length === 1) {
           await db
             .collection('users')
@@ -77,7 +85,8 @@ exports.stripetoken = functions
             .update({
               [`coupons`]: admin.firestore.FieldValue.increment(1),
               [`totalreferrals`]: admin.firestore.FieldValue.increment(1),
-            })}
+            })
+        }
       }
       return 'paymnent succesful'
     } else {
