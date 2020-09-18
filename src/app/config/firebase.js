@@ -6,6 +6,7 @@ import "firebase/storage";
 import "firebase/functions";
 import 'firebase/analytics';
 import 'firebase/messaging';
+import 'firebase/performance'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {

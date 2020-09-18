@@ -1,23 +1,32 @@
-import React, { Component } from "react";
-import TopSellers from "./Categories/TopSellers";
-import BestOffer from "./Categories/BestOffer";
-import styles from "./HomePage.module.css";
-import { Button } from "semantic-ui-react";
-import { Link } from "react-router-dom";
-import Slideshow from "./Slideshow";
-import SlideshowD from "./Categories/SlideshowD";
+import React, { Component } from 'react'
+import TopSellers from './Categories/TopSellers'
+import BestOffer from './Categories/BestOffer'
+import styles from './HomePage.module.css'
+import { Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import Slideshow from './Slideshow'
+import SlideshowD from './Categories/SlideshowD'
 import firebase from '../../app/config/firebase.js'
 
 class HomePage extends Component {
-  componentDidMount(){
-    const messaging = firebase.messaging()
-    messaging.requestPermission().then((token)=> {
-      return messaging.getToken()
-    }).then(token => {
-      console.log(token)
-    }).catch(() =>
-      console.log('error')
-    )
+  componentDidMount() {
+    const messaging = firebase.messaging();
+    const sendTokenToServer = firebase
+      .app()
+      .functions('asia-south1')
+      .httpsCallable('pushmessagingtoken');
+    Notification
+      .requestPermission()
+      .then(() => {
+        return messaging.getToken()
+      })
+      .then((token) => {
+        return sendTokenToServer({token})
+      })
+      .then((token) => {
+        return console.log(token)
+      })
+      .catch(() => console.log('error'))
   }
   render() {
     return (
@@ -30,9 +39,9 @@ class HomePage extends Component {
         </div>
         <div className={styles.savings}>
           <div className={styles.innersavings}>
-          <h1>Summer Savings</h1>
-          <p>Save an additional 10% on all clearance items</p>
-          <Button color={"black"}content={'Shop now'}/>
+            <h1>Summer Savings</h1>
+            <p>Save an additional 10% on all clearance items</p>
+            <Button color={'black'} content={'Shop now'} />
           </div>
         </div>
         <div className={styles.himher}>
@@ -41,16 +50,16 @@ class HomePage extends Component {
               className={[
                 styles.animated,
                 styles.animatedFadeInUp,
-                styles.fadeInUp
-              ].join(" ")}
+                styles.fadeInUp,
+              ].join(' ')}
             >
               <h2>Summer 2020</h2>
               <p>
                 Dosuere an morci lobortis scelerisque blandit <br />
                 cosmopolis de metropolitan.
               </p>
-              <Link to="/her">
-                <Button fluid style={{ textTransform: "uppercase" }}>
+              <Link to='/her'>
+                <Button fluid style={{ textTransform: 'uppercase' }}>
                   Shop Now
                 </Button>
               </Link>
@@ -61,16 +70,16 @@ class HomePage extends Component {
               className={[
                 styles.animated,
                 styles.animatedFadeInUp,
-                styles.fadeInUp
-              ].join(" ")}
+                styles.fadeInUp,
+              ].join(' ')}
             >
               <h2>Spring 2020</h2>
               <p>
                 Dosuere an morci lobortis scelerisque blandit <br />
                 cosmopolis de metropolitan.
               </p>
-              <Link to="/him">
-                <Button fluid style={{ textTransform: "uppercase" }}>
+              <Link to='/him'>
+                <Button fluid style={{ textTransform: 'uppercase' }}>
                   Shop Now
                 </Button>
               </Link>
@@ -81,18 +90,34 @@ class HomePage extends Component {
           <div className={styles.innershopby}>
             <h3>Shop By</h3>
             <div className={styles.categories}>
-              <div className={styles.item1}><span><Link to="/tops">TOPS</Link></span></div>
-              <div className={styles.item2}><span><Link to="/tunics">TUNICS</Link></span></div>
-              <div className={styles.item3}><span><Link to="/dress">DRESSES</Link></span></div>
-              <div className={styles.item4}><span><Link to="/sweatshirts">SWEATSHIRTS</Link></span></div>
+              <div className={styles.item1}>
+                <span>
+                  <Link to='/tops'>TOPS</Link>
+                </span>
+              </div>
+              <div className={styles.item2}>
+                <span>
+                  <Link to='/tunics'>TUNICS</Link>
+                </span>
+              </div>
+              <div className={styles.item3}>
+                <span>
+                  <Link to='/dress'>DRESSES</Link>
+                </span>
+              </div>
+              <div className={styles.item4}>
+                <span>
+                  <Link to='/sweatshirts'>SWEATSHIRTS</Link>
+                </span>
+              </div>
             </div>
           </div>
         </div>
         <TopSellers />
         <BestOffer />
       </div>
-    );
+    )
   }
 }
 
-export default HomePage;
+export default HomePage

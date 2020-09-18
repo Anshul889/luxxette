@@ -63,6 +63,10 @@
   font-weight: 700;
 }
 
+.order:last-child {
+  border-bottom: none!important;
+}
+
 .order{
   display: grid;
   width: 90%;

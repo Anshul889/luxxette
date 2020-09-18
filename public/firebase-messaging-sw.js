@@ -12,3 +12,4 @@ firebase.initializeApp({
   measurementId: "G-CQWW0N8CD6"
 });
 const messaging = firebase.messaging();
+messaging.usePublicVapidKey()

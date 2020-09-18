@@ -160,11 +160,12 @@ class UserDetailedPage extends Component {
           <UserAddressFormTwo closeForm={this.closeFormTwo} />
         )}
         <div className={styles.orderhistory}>Order History</div>
+        <div className={styles.orderupper}>
         {orders &&
           orders.map(order => (
             <div className={styles.order} key={order.id}>
               <div>
-                <div>${order.price}</div>
+                <div>${order.amount}</div>
                 <div>status : {order.status}</div>
                 <div>{format(order.time.toDate(), "do LLL yyyy")}</div>
               </div>
@@ -178,8 +179,9 @@ class UserDetailedPage extends Component {
                   </div>
                 ))}
               </div>
-            </div>
+              </div>
           ))}
+          </div>
       </React.Fragment>
     );
   }
