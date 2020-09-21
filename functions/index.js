@@ -26,6 +26,7 @@ exports.stripetoken = functions
         City,
         Name,
         phone,
+        refcode
       } = userSnap.data().newAddress
       const cart = userSnap.data().cart
 
@@ -91,7 +92,7 @@ exports.stripetoken = functions
 
       // add coupon to friends account for referral and send email notification to friend
 
-      if (friendcode) {
+      if (friendcode !== refcode) {
         const response = await db
           .collection('users')
           .where('refcode', '==', friendcode)

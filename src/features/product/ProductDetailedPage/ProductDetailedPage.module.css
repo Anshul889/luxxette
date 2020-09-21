@@ -11,3 +11,7 @@
   text-transform: uppercase;
   font-size: 17px;
 }
+
+.emptydiv{
+  height: 100vh;
+}

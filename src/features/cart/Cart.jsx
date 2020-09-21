@@ -16,7 +16,7 @@ import { Loader, Button } from 'semantic-ui-react'
 import CheckoutButton from './CheckoutButton'
 import FriendCode from './FriendCode'
 
-const mapState = (state, ownProps) => ({
+const mapState = (state) => ({
   address: state.firebase.profile.newAddress,
   cart: objectToArray(state.firebase.profile.cart) || [],
   cartob: state.firebase.profile.cart,
