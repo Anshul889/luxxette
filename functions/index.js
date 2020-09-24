@@ -26,7 +26,7 @@ exports.stripetoken = functions
         City,
         Name,
         phone,
-        refcode
+        refcode,
       } = userSnap.data().newAddress
       const cart = userSnap.data().cart
 
@@ -60,7 +60,7 @@ exports.stripetoken = functions
       //adjust inventory on database
 
       for (let cartKey in cart) {
-        var negativecartProductQuantity = Math.sign(-1) * cart[cartKey].quantity
+        let negativecartProductQuantity = Math.sign(-1) * cart[cartKey].quantity
         db.doc(`products/${cartKey}`).update({
           [`remainingQuantity`]: admin.firestore.FieldValue.increment(
             negativecartProductQuantity
@@ -145,23 +145,26 @@ exports.scheduledFunctionCrontab = functions.pubsub
   .timeZone('America/New_York') // Users can choose timezone - default is America/Los_Angeles
   .onRun(async (context) => {
     const tokensQuery = await db.collection('tokens').limit(50).get()
-    let tokens = []
 
-    for (let i = 0; i < tokensQuery.docs.length; i++) {
-      let token = tokensQuery.docs[i].data().token
-      tokens.push(token)
-    }
+    if (tokensQuery.docs.length > 0) {
+      let tokens = []
 
-    const message = {
-      notification: {
-        title: 'Summer sale has started',
-        body: 'Upto 50% off on select items',
-      },
-      tokens,
-    }
-    try {
-      await admin.messaging().sendMulticast(message)
-    } catch (error) {
-      console.log(error)
+      for (let i = 0; i < tokensQuery.docs.length; i++) {
+        let token = tokensQuery.docs[i].data().token
+        tokens.push(token)
+      }
+
+      const message = {
+        notification: {
+          title: 'Summer sale has started',
+          body: 'Upto 50% off on select items',
+        },
+        tokens,
+      }
+      try {
+        await admin.messaging().sendMulticast(message)
+      } catch (error) {
+        console.log(error)
+      }
     }
   })

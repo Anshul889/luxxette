@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, lazy, Suspense } from 'react'
 import { compose } from 'redux'
 import { objectToArray } from '../../../app/common/util/helpers'
 import { withFirestore } from 'react-redux-firebase'
@@ -13,10 +13,13 @@ import {
 } from '../../user/userActions'
 import ProductDetailedInfo from './ProductDetailedInfo'
 import styles from './ProductDetailedPage.module.css'
-import ProductReviews from './ProductReviews'
-import ProductReviewForm from './ProductReviewForm'
-import ProductRelatedItems from './ProductRelatedItems'
 import { openModal } from '../../modals/modalActions.js'
+
+const ProductReviews = lazy(() => import(/* webpackPrefetch: true */'./ProductReviews'))
+const ProductReviewForm = lazy(() => import('./ProductReviewForm'))
+const ProductRelatedItems = lazy(() => import('./ProductRelatedItems'))
+
+const renderLoader = () => <p>Loading</p>
 
 const mapState = (state, ownProps) => {
   const productId = ownProps.match.params.id
@@ -100,7 +103,6 @@ class ProductDetailedPage extends Component {
     const isNotify = notified && notified.some((a) => a.id === auth.uid)
     return (
       <div>
-        {!product.title && <div className={styles.emptydiv}></div>}
         {product.title && (
           <div className={styles.container}>
             <ProductDetailedInfo
@@ -116,21 +118,23 @@ class ProductDetailedPage extends Component {
               authenticated={authenticated}
               removeFromWishlist={removeFromWishlist}
             />
-            <ProductRelatedItems product={product} />
-            <h3>Reviews</h3>
-            <ProductReviews
-              reviews={reviews}
-              removeReview={removeReview}
-              isReviewer={isReviewer}
-              product={product}
-              auth={auth}
-            />
-            <ProductReviewForm
-              addReview={addReview}
-              product={product}
-              isReviewer={isReviewer}
-              authenticated={authenticated}
-            />
+            <Suspense fallback={renderLoader()}>
+              <ProductRelatedItems product={product} />
+              <h3>Reviews</h3>
+              <ProductReviews
+                reviews={reviews}
+                removeReview={removeReview}
+                isReviewer={isReviewer}
+                product={product}
+                auth={auth}
+              />
+              <ProductReviewForm
+                addReview={addReview}
+                product={product}
+                isReviewer={isReviewer}
+                authenticated={authenticated}
+              />
+            </Suspense>
           </div>
         )}
       </div>

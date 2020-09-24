@@ -39,9 +39,8 @@ class HomePage extends Component {
         </div>
         <div className={styles.savings}>
           <div className={styles.innersavings}>
-            <h1>Summer Savings</h1>
-            <p>Save an additional 10% on all clearance items</p>
-            <Button color={'black'} content={'Shop now'} />
+            <p>Fashion inspired by where we're from — the sunny shores of California.</p>
+            <p>Products provided by PIKO</p>
           </div>
         </div>
         <div className={styles.himher}>
@@ -59,7 +58,7 @@ class HomePage extends Component {
                 cosmopolis de metropolitan.
               </p>
               <Link to='/her'>
-                <Button fluid style={{ textTransform: 'uppercase' }}>
+                <Button  fluid style={{ textTransform: 'uppercase' }}>
                   Shop Now
                 </Button>
               </Link>

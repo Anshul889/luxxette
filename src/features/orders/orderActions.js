@@ -12,7 +12,7 @@ export const getOrders = () => async (dispatch, getState) => {
     dispatch(asyncActionStart());
     let ordersQuery = await firestore.collection("orders").where("status", "==", "approved").get();
     let orders = [];
-
+    console.log(ordersQuery.docs[0].data());
     for (let i = 0; i < ordersQuery.docs.length; i++) {
       let order = { ...ordersQuery.docs[i].data(), id: ordersQuery.docs[i].id };
       orders.push(order);

@@ -66,5 +66,13 @@
     grid-template-columns: repeat(4, 1fr);
     max-width: 1400px;
     width: 95%;
+    grid-gap: 30px;
+  }
+  .inner a{
+    font-size: 14px;
+  }
+
+  .inner span{
+    font-size: 14px;
   }
 }

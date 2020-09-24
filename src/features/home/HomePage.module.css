@@ -200,13 +200,23 @@
   }
   .innersavings{
     margin: 30px 5%;
+    background-color: white;
   }
+
+  .innersavings p{
+    font-size: 20px;
+  }
+
   .categories{
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 380px;
   }
   .himher{
     grid-template-columns: 1fr 1fr;
+  }
+  .him, .her{
+    font-size: 20px;
+    text-align: center;
   }
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Footer.module.css';
 import mpesalogo from '../../assets/mpesalogo.png';
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <div className={styles.footer}>
       <div className={styles.sec1}>
@@ -25,3 +25,5 @@ export const Footer = () => {
     </div>
   );
 };
+
+export default Footer

@@ -63,6 +63,15 @@
     margin: 0 auto;
     padding: 0 20px;
   }
+
+  .inner a{
+    font-size: 14px;
+  }
+
+  .inner span{
+    font-size: 14px;
+  }
+
   .product {
     transform: translateY(0px)
   }

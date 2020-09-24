@@ -22,7 +22,7 @@
   font-weight: bold;
   padding-bottom: 10px;
   text-transform: capitalize;
-  max-width: 1400px;
+  max-width: 1080px;
 }
 
 .product {
@@ -30,6 +30,7 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
+  max-width: 1080px;
 }
 
 .content {
@@ -101,7 +102,7 @@
 @media screen and (min-width: 800px) {
   .product {
     grid-template-columns: 1fr 2fr;
-    max-width: 1400px;
+    max-width: 1080px;
     padding: 20px 0;
     grid-gap: 80px;
   }
