@@ -4,3 +4,10 @@
   column-gap: 20px;
   height: 50px;
 }
+
+@media screen and (min-width: 800px) {
+  .form{
+    width: 350px;
+    grid-template-columns: auto 100px;
+  }
+}

@@ -45,6 +45,7 @@ export const removeFromCart = (product) => async (
     await firestore.update(`users/${user.uid}`, {
       [`cart.${product.id}`]: firestore.FieldValue.delete(),
     })
+    firebase.analytics().logEvent('remove from cart' , {product: product.title})
   } catch (error) {
     console.log(error)
     toastr.error('Oops', 'something went wrong')
@@ -74,6 +75,7 @@ export const addToWishlist = (product) => async (
       productId: product.id,
       userUid: user.uid,
     })
+    firebase.analytics().logEvent('add to wishlist' , {product: product.title})
   } catch (error) {
     console.log(error)
   }
@@ -93,6 +95,7 @@ export const removeFromWishlist = (product) => async (
       [`wishlistAdders.${user.uid}`]: firestore.FieldValue.delete(),
     })
     await firestore.delete(`wishlist/${product.id}_${user.uid}`)
+    firebase.analytics().logEvent('remove from wishlist' , {product: product.title})
   } catch (error) {
     console.log(error)
   }

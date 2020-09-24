@@ -99,6 +99,7 @@ class Wishlist extends Component {
                     (<div><Button
                       onClick={() => addToCart(product, values)}
                       content={"Add to cart"}
+                      color='black'
                     />
                     </div>)}
                   </div>
