@@ -51,6 +51,8 @@ class App extends Component {
             <Route exact path='/dress' component={Beauty} />
             <Route exact path='/tops' component={Jewellery} />
             <Route exact path='/tunics' component={Bags} />
+            <Route exact path='/her' component={Bags} />
+            <Route exact path='/him' component={Bags} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/orders' component={Orders} />
             <Route exact path='/complete' component={Complete} />
